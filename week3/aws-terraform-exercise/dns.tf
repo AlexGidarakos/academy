@@ -45,24 +45,6 @@ resource "aws_acm_certificate" "cert" {
   }
 }
 
-resource "aws_route53_record" "cert" {
-  name    = tolist(aws_acm_certificate.cert.domain_validation_options)[0].resource_record_name
-  type    = tolist(aws_acm_certificate.cert.domain_validation_options)[0].resource_record_type
-  records = [tolist(aws_acm_certificate.cert.domain_validation_options)[0].resource_record_value]
-  zone_id = data.aws_route53_zone.zone_root.id
-  ttl     = 60
-}
-
-resource "aws_acm_certificate_validation" "cert" {
-  certificate_arn         = aws_acm_certificate.cert.arn
-  validation_record_fqdns = [aws_route53_record.cert.fqdn]
-
-  timeouts {
-    create = "1m"
-  }
-}
-
-/*
 # Define helper DNS records to use in SSL certificate validation
 resource "aws_route53_record" "cert" {
   for_each = {
@@ -87,4 +69,3 @@ resource "aws_acm_certificate_validation" "cert" {
   certificate_arn         = aws_acm_certificate.cert.arn
   validation_record_fqdns = [for record in aws_route53_record.cert : record.fqdn]
 }
-*/

@@ -220,10 +220,12 @@ locals {
 
 # Define filters to look up the root Hosted Zone name
 variable "zone_root_name" {
-  default = "d63a8c22cfb9.co.uk"
+  # default = "d63a8c22cfb9.co.uk"
+  default = "kpa2023.techniffic.com"
 }
 variable "zone_root_id" {
-  default = "Z04948702WAVIYHOMMI8T"
+  # default = "Z04948702WAVIYHOMMI8T"
+  default = "Z0126258EOB0TWJH4RFY"
 }
 locals {
   zone_private_name = local.prefix
