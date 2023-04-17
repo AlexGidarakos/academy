@@ -29,6 +29,12 @@ override.tf.json
 # example: *tfplan*
 *tfplan*
 
+# Certificates
+*.key
+*.pub
+*.pem
+*.crt
+
 # AWS Access Keys CSV
 *accessKeys.csv*
 
@@ -38,4 +44,3 @@ override.tf.json
 # Add custom suffixes to files or directories to ignore
 *-gitignore*
 *.gitignore.*
-
